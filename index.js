@@ -48,7 +48,7 @@ class Airplane {
       this.stomach = [];
     }
     eat(edible){
-      if(this.stomach.length <= 10){
+      if(this.stomach.length < 10){
         this.stomach.push(edible);
       }
     }
@@ -86,13 +86,14 @@ class Airplane {
     }
     drive(distance){
       this.odometer = this.odometer + distance;
-      this.tank = 0;
-      if(this.tank === 0){
-        this.odometer =  0;
-        return `I ran out of fuel at ${this.odometer} miles!`
+      this.tank = distance / this.milesPerGallon;
+      if(distance > 200){
+       this.odometer = (this.milesPerGallon * this.tank) -1;
+       this.tank = 0;
+       return `I ran out of fuel at ${this.odometer} miles!`
+       
       }
     }
-
   }
   
   /*
